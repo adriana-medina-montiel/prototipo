@@ -14,24 +14,37 @@
 <div id="cur-r"></div>
 
 <nav>
-    <div class="logo">
-        <img src="s3.png" alt="Softura Solutions Logo">
-    </div>
+  <div class="logo">
+    <a href="index.html"><img src="s3.png" alt="Softura Solutions Logo"></a>
+  </div>
   <ul class="nav-links">
     <li class="dropdown">
-      <a >Servicios ▾</a>
+      <a href="#" data-i18n="nav.services">Servicios ▾</a>
       <ul class="dropdown-menu">
-        <li><a href="/fabrica.html">Fábrica de Software</a></li>
-        <li><a href="/nearshoring.html">Nearshoring / Onshoring</a></li>
+        <li><a href="fabrica.html" data-i18n="nav.factory">Fábrica de Software</a></li>
+        <li><a href="nearshoring.html" data-i18n="nav.nearshoring">Nearshoring / Onshoring</a></li>
       </ul>
     </li>
-    <li><a href="/productos.html">Productos</a></li>
-    <li><a href="/blog.html">Blog</a></li>
-    <li><a href="/conocenos.html">Conocenos</a></li>
-    <li><a href="/contacto.html">Contacto</a></li>
-    <li><a href="#" class="btn-nav">idioma</a></li>
+    <li><a href="productos.html" data-i18n="nav.products">Productos</a></li>
+    <li><a href="blog.html" data-i18n="nav.blog">Blog</a></li>
+    <li><a href="conocenos.html" data-i18n="nav.about">Conócenos</a></li>
+    <li><a href="contacto.html" data-i18n="nav.contact">Contacto</a></li>
+    <li class="lang-switch" role="group" aria-label="Idioma">
+      <span class="lang-switch-icon" aria-hidden="true">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/>
+          <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+        </svg>
+      </span>
+      <div class="lang-switch-track">
+        <button type="button" class="lang-option active" data-lang="es" data-i18n="lang.es" aria-pressed="true">Español</button>
+        <button type="button" class="lang-option" data-lang="en" data-i18n="lang.en" aria-pressed="false">Inglés</button>
+      </div>
+    </li>
   </ul>
 </nav>
 
+<script src="i18n.js"></script>
+<script src="main.js"></script>
 </body>
 </html>
