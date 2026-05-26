@@ -14,22 +14,33 @@
 <div id="cur-r"></div>
 
 <nav>
-    <div class="logo">
-        <img src="s3.png" alt="Softura Solutions Logo">
-    </div>
+  <div class="logo">
+    <a href="index.html"><img src="s3.png" alt="Softura Solutions Logo"></a>
+  </div>
   <ul class="nav-links">
     <li class="dropdown">
-      <a >Servicios ▾</a>
+      <a href="#" data-i18n="nav.services">Servicios ▾</a>
       <ul class="dropdown-menu">
-        <li><a href="/fabrica.html">Fábrica de Software</a></li>
-        <li><a href="/nearshoring.html">Nearshoring / Onshoring</a></li>
+        <li><a href="fabrica.html" data-i18n="nav.factory">Fábrica de Software</a></li>
+        <li><a href="nearshoring.html" data-i18n="nav.nearshoring">Nearshoring / Onshoring</a></li>
       </ul>
     </li>
-    <li><a href="/productos.html">Productos</a></li>
-    <li><a href="/blog.html">Blog</a></li>
-    <li><a href="/conocenos.html">Conocenos</a></li>
-    <li><a href="/contacto.html">Contacto</a></li>
-    <li><a href="#" class="btn-nav">idioma</a></li>
+    <li><a href="productos.html" data-i18n="nav.products">Productos</a></li>
+    <li><a href="blog.html" data-i18n="nav.blog">Blog</a></li>
+    <li><a href="conocenos.html" data-i18n="nav.about">Conócenos</a></li>
+    <li><a href="contacto.html" data-i18n="nav.contact">Contacto</a></li>
+    <li class="lang-switch" role="group" aria-label="Idioma">
+      <span class="lang-switch-icon" aria-hidden="true">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/>
+          <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+        </svg>
+      </span>
+      <div class="lang-switch-track">
+        <button type="button" class="lang-option active" data-lang="es" data-i18n="lang.es" aria-pressed="true">Español</button>
+        <button type="button" class="lang-option" data-lang="en" data-i18n="lang.en" aria-pressed="false">Inglés</button>
+      </div>
+    </li>
   </ul>
 </nav>
 
@@ -349,30 +360,30 @@
         </div>
       </div>
 
-      <form action="#" style="display:flex; flex-direction:column; gap:1.2rem;">
+      <form data-contact novalidate style="display:flex; flex-direction:column; gap:1.2rem;">
         
         <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap:1.2rem;">
           <div style="position:relative;">
-            <input type="text" placeholder="Nombre completo" required style="width:100%; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); padding:0.9rem 1rem; border-radius:10px; color:#fff; font-family:inherit; font-size:0.9rem; outline:none; box-sizing:border-box;">
+            <input type="text" name="nombre" data-i18n-placeholder="contact.name" placeholder="Nombre completo" required style="width:100%; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); padding:0.9rem 1rem; border-radius:10px; color:#fff; font-family:inherit; font-size:0.9rem; outline:none; box-sizing:border-box;">
           </div>
           <div style="position:relative;">
-            <input type="text" placeholder="Empresa (opcional)" style="width:100%; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); padding:0.9rem 1rem; border-radius:10px; color:#fff; font-family:inherit; font-size:0.9rem; outline:none; box-sizing:border-box;">
+            <input type="text" name="empresa" data-i18n-placeholder="contact.company" placeholder="Empresa (opcional)" style="width:100%; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); padding:0.9rem 1rem; border-radius:10px; color:#fff; font-family:inherit; font-size:0.9rem; outline:none; box-sizing:border-box;">
           </div>
         </div>
 
         <div style="position:relative;">
-          <input type="email" placeholder="Correo electrónico" required style="width:100%; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); padding:0.9rem 1rem; border-radius:10px; color:#fff; font-family:inherit; font-size:0.9rem; outline:none; box-sizing:border-box;">
+          <input type="email" name="email" data-i18n-placeholder="contact.email" placeholder="Correo electrónico" required style="width:100%; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); padding:0.9rem 1rem; border-radius:10px; color:#fff; font-family:inherit; font-size:0.9rem; outline:none; box-sizing:border-box;">
         </div>
 
         <div style="position:relative;">
-          <input type="tel" placeholder="Teléfono (opcional)" style="width:100%; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); padding:0.9rem 1rem; border-radius:10px; color:#fff; font-family:inherit; font-size:0.9rem; outline:none; box-sizing:border-box;">
+          <input type="tel" name="telefono" data-i18n-placeholder="contact.phone" placeholder="Teléfono (opcional)" style="width:100%; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); padding:0.9rem 1rem; border-radius:10px; color:#fff; font-family:inherit; font-size:0.9rem; outline:none; box-sizing:border-box;">
         </div>
 
         <div style="position:relative;">
-          <textarea placeholder="Cuéntanos sobre tu proyecto o lo que necesitas..." rows="4" required style="width:100%; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); padding:0.9rem 1rem; border-radius:10px; color:#fff; font-family:inherit; font-size:0.9rem; outline:none; resize:none; box-sizing:border-box; display:block;"></textarea>
+          <textarea name="mensaje" data-i18n-placeholder="contact.message" placeholder="Cuéntanos sobre tu proyecto o lo que necesitas..." rows="4" required style="width:100%; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); padding:0.9rem 1rem; border-radius:10px; color:#fff; font-family:inherit; font-size:0.9rem; outline:none; resize:none; box-sizing:border-box; display:block;"></textarea>
         </div>
 
-        <button type="submit" style="width:100%; background:linear-gradient(90deg, #1A4FFF 0%, #3b82f6 100%); color:#fff; border:none; padding:1rem; border-radius:10px; font-family:inherit; font-weight:600; font-size:1rem; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:0.5rem; box-shadow:0 10px 25px rgba(26,79,255,0.3); transition:all 0.3s ease;">
+        <button type="submit" data-i18n="contact.send" style="width:100%; background:linear-gradient(90deg, #1A4FFF 0%, #3b82f6 100%); color:#fff; border:none; padding:1rem; border-radius:10px; font-family:inherit; font-weight:600; font-size:1rem; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:0.5rem; box-shadow:0 10px 25px rgba(26,79,255,0.3); transition:all 0.3s ease;">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
           Enviar mensaje
         </button>
@@ -401,24 +412,6 @@
 </footer> 
 
 <script>
-// ===== CURSOR =====
-const cur = document.getElementById('cur');
-const curR = document.getElementById('cur-r');
-let mx=0,my=0,rx=0,ry=0;
-document.addEventListener('mousemove',e=>{
-  mx=e.clientX;my=e.clientY;
-  cur.style.left=(mx-5)+'px';cur.style.top=(my-5)+'px';
-});
-(function animRing(){
-  rx+=(mx-rx-18)*.12;ry+=(my-ry-18)*.12;
-  curR.style.left=rx+'px';curR.style.top=ry+'px';
-  requestAnimationFrame(animRing);
-})();
-document.querySelectorAll('a,button,.svc,.stack-tag').forEach(el=>{
-  el.addEventListener('mouseenter',()=>{cur.style.transform='scale(2.5)';curR.style.transform='scale(1.4)';curR.style.borderColor='rgba(26,79,255,.6)'});
-  el.addEventListener('mouseleave',()=>{cur.style.transform='scale(1)';curR.style.transform='scale(1)';curR.style.borderColor='rgba(26,79,255,.35)'});
-});
-
 // ===== THREE.JS HERO =====
 (function(){
   const canvas = document.getElementById('three-hero');
@@ -520,38 +513,8 @@ document.querySelectorAll('a,button,.svc,.stack-tag').forEach(el=>{
   }
   animate();
 })();
-// ===== SCROLL ANIMATIONS CORREGIDO =====
-const obs = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      e.target.classList.add('vis');
-      
-      // Manejo seguro de contadores
-      const counters = e.target.querySelectorAll('.stat-n');
-      counters.forEach(el => {
-        if(el.classList.contains('counted')) return; // Evita repetir la animación
-        el.classList.add('counted');
-        
-        const target = parseInt(el.getAttribute('data-target')) || 0;
-        const suffix = el.getAttribute('data-suffix') || '';
-        let current = 0;
-        const increment = target / 40; 
-        
-        const timer = setInterval(() => {
-          current += increment;
-          if (current >= target) {
-            current = target;
-            clearInterval(timer);
-          }
-          el.textContent = Math.floor(current) + suffix;
-        }, 25);
-      });
-    }
-  });
-}, { threshold: 0.1 });
-
-// Observamos únicamente elementos válidos
-document.querySelectorAll('.rev').forEach(el => obs.observe(el));
 </script>
+<script src="i18n.js"></script>
+<script src="main.js"></script>
 </body>
 </html>
