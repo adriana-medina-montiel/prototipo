@@ -1,0 +1,1764 @@
+/* --- Estilos del Menú de Navegación (Originales e Intactos) --- */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 1.4rem 5vw;
+  background: rgba(250, 250, 250, .85);
+  backdrop-filter: blur(24px);
+  border-bottom: 1px solid var(--border);
+}
+.logo img {
+  height: 40px;        /* tamaño visible del logo */
+  max-height: 40px;    /* evita que crezca más */
+  width: auto;         /* mantiene proporción */
+  object-fit: contain; /* evita deformaciones */
+  vertical-align: middle;
+}
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.nav-links { display: flex; gap: 2.5rem; list-style: none }
+.nav-links a { color: var(--gray); text-decoration: none; font-size: .82rem; letter-spacing: .06em; text-transform: uppercase; transition: color .2s }
+.nav-links a:hover { color: var(--blue) }
+.nav-btn { background: var(--blue); color: #fff; border: none; padding: .65rem 1.8rem; font-family: 'Syne', sans-serif; font-weight: 700; font-size: .82rem; letter-spacing: .04em; cursor: none; transition: background .2s }
+.nav-btn:hover { background: var(--blue2) }
+
+
+/* ==========================================
+   SOLUCIÓN EXCLUSIVA PARA EL DESPLEGABLE
+   ========================================== */
+
+/* 1. Hace que el <li> de Servicios sea el contenedor de referencia */
+.nav-links .dropdown {
+    position: relative;
+}
+
+/* 2. Resetea el comportamiento del submenú para que NO se alinee en horizontal */
+.nav-links .dropdown-menu {
+    position: absolute;
+    top: 100%;             /* Se posiciona justo debajo de "Servicios" */
+    left: 0;               /* Lo alinea a la izquierda del texto padre */
+    background: #ffffff;   /* Fondo sólido para que no se transparente el texto de abajo */
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12); /* Sombra para darle elevación */
+    border-radius: 6px;
+    padding: 0.5rem 0;
+    margin: 0;
+    list-style: none;
+    min-width: 240px;      /* Evita que los textos largos se amontonen o se corten */
+    
+    /* Forzamos a que las opciones se apilen verticalmente */
+    display: flex;
+    flex-direction: column;
+
+    /* Estado inicial: oculto */
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.2s ease, visibility 0.2s;
+    z-index: 999;          /* Se asegura de flotar por encima de las tarjetas y títulos */
+}
+
+/* 3. Estilos para los elementos de lista internos del submenú */
+.nav-links .dropdown-menu li {
+    width: 100%;
+    display: block;
+}
+
+/* 4. Estilos para los enlaces de adentro del submenú */
+.nav-links .dropdown-menu li a {
+    display: block;
+    padding: 0.7rem 1.2rem;
+    color: #334155;        /* Color gris oscuro para el texto */
+    font-size: 0.8rem;
+    text-transform: none;  /* Mantiene las minúsculas/mayúsculas originales */
+    letter-spacing: normal;
+    white-space: nowrap;   /* Evita saltos de línea molestos */
+    transition: background 0.2s, color 0.2s;
+}
+
+/* Hover de las opciones internas */
+.nav-links .dropdown-menu li a:hover {
+    background-color: #f1f5f9; /* Fondo gris claro al pasar el mouse */
+    color: var(--blue);        /* Cambia al color azul de tu proyecto */
+}
+
+/* 5. Interacción: Muestra el submenú al hacer hover en el li (.dropdown) */
+.nav-links .dropdown:hover .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+
+/* --- Variables Globales y Reset --- */
+:root {
+    --bg-gradient: linear-gradient(135deg, #f5f9ff 0%, #eef4ff 100%);
+    --text-dark: #1e293b;
+    --text-muted: #64748b;
+    --primary-blue: #3b82f6;
+    --primary-purple: #8b5cf6;
+    
+    /* Colores específicos de las tarjetas de la imagen */
+    --color-binibiaa: #a855f7;
+    --color-academica: #0284c7;
+    --color-siga: #eab308;
+    --color-fenyx: #ea580c;
+    --color-pbr: #d97706;
+    --color-sspip: #4b5563;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 110px; /* Evita que el nav fijo tape los títulos al deslizar */
+}
+
+body {
+    background: var(--bg-gradient);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;    /* Ajustado: Forza a que las secciones se apilen hacia abajo */
+    justify-content: flex-start; /* Ajustado: Permite el flujo continuo del scroll */
+    align-items: center;
+    padding: 120px 20px 40px 20px; /* Espacio superior para respetar la barra fija */
+}
+
+/* --- Contenedor Sección --- */
+.products-section {
+    max-width: 1200px;
+    width: 100%;
+    margin-bottom: 60px;
+}
+
+/* --- Encabezado --- */
+.products-header {
+    text-align: center;
+    margin-bottom: 50px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.products-header .subtitle {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--primary-blue);
+    letter-spacing: 2px;
+}
+
+.products-header h1 {
+    font-size: 2.2rem;
+    color: var(--text-dark);
+    margin: 15px 0;
+    line-height: 1.3;
+}
+
+.products-header .highlight {
+    color: #4338ca; /* Azul/Morado fuerte */
+}
+
+.products-header p {
+    color: var(--text-muted);
+    font-size: 1rem;
+}
+
+.products-header .highlight-blue {
+    color: var(--primary-blue);
+    font-weight: 600;
+}
+
+/* --- Grid de Productos --- */
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 25px;
+    margin-bottom: 50px;
+}
+
+/* --- Tarjeta Individual (Glassmorphism sutil) --- */
+.product-card {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 20px;
+    padding: 25px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    box-shadow: 0 10px 25px rgba(163, 191, 241, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(163, 191, 241, 0.35);
+}
+
+/* --- Ajuste para Contenedor de Imagen Circular --- */
+.card-logo {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    margin-right: 20px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    overflow: hidden; /* Recorta los bordes de la imagen para forzar la forma circular */
+}
+
+/* Regla estricta para que las nuevas imágenes no se deformen */
+.card-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Mantiene la proporción escalando e imitando un background-size: cover */
+    object-position: center;
+    display: block;
+}
+
+/* Fondos degradados suaves por si tus imágenes tienen transparencias png */
+.logo-purple { background: linear-gradient(135deg, #f3e8ff, #c084fc); }
+.logo-blue { background: linear-gradient(135deg, #e0f2fe, #38bdf8); }
+.logo-yellow { background: linear-gradient(135deg, #fef9c3, #facc15); }
+.logo-orange { background: linear-gradient(135deg, #ffedd5, #fb923c); }
+.logo-gold { background: linear-gradient(135deg, #fef3c7, #fbbf24); }
+.logo-gray { background: linear-gradient(135deg, #f3f4f6, #9ca3af); }
+
+/* Contenido de la tarjeta */
+.card-content {
+    flex-grow: 1;
+    padding-right: 40px;
+}
+
+.card-content h3 {
+    font-size: 1.3rem;
+    color: var(--text-dark);
+    margin-bottom: 6px;
+    font-weight: 700;
+}
+
+.card-content p {
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    line-height: 1.4;
+    margin-bottom: 12px;
+}
+
+/* Línea decorativa inferior de los textos */
+.card-line {
+    width: 30px;
+    height: 3px;
+    border-radius: 2px;
+}
+.line-purple { background-color: var(--color-binibiaa); }
+.line-blue { background-color: var(--color-academica); }
+.line-yellow { background-color: var(--color-siga); }
+.line-orange { background-color: var(--color-fenyx); }
+.line-gold { background-color: var(--color-pbr); }
+.line-gray { background-color: var(--color-sspip); }
+
+/* Botón de flecha redondo */
+.card-btn {
+    position: absolute;
+    right: 25px;
+    bottom: 25px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: none;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    transition: background 0.2s, transform 0.2s;
+}
+
+.card-btn:hover {
+    transform: scale(1.1);
+}
+
+.btn-purple { background-color: var(--color-binibiaa); }
+.btn-blue { background-color: var(--color-academica); }
+.btn-yellow { background-color: var(--color-siga); }
+.btn-orange { background-color: var(--color-fenyx); }
+.btn-gold { background-color: var(--color-pbr); }
+.btn-gray { background-color: var(--color-sspip); }
+
+/* --- Barra de Características (Footer) --- */
+.features-bar {
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 20px;
+    padding: 20px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 8px 20px rgba(163, 191, 241, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    flex-wrap: wrap;
+    gap: 15px;
+    width: 100%;
+}
+
+.feature-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex: 1;
+    min-width: 200px;
+}
+
+.feature-item i {
+    font-size: 1.4rem;
+    background: #eff6ff;
+    color: var(--primary-blue);
+    padding: 10px;
+    border-radius: 12px;
+}
+
+.feature-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.feature-text strong {
+    font-size: 0.9rem;
+    color: var(--text-dark);
+}
+
+.feature-text span {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+}
+
+.feature-line {
+    width: 1px;
+    height: 35px;
+    background-color: #e2e8f0;
+}
+
+/* ==========================================
+   VERSION WHITE INFINITE: COMERCIALIZADORA BINIBIAA
+   ========================================== */
+
+/* La sección ahora fuerza el fondo blanco plano de extremo a extremo */
+.binibiaa-section {
+    width: 100%;
+    background: #ffffff !important; /* Tapamos por completo cualquier fondo azul del body */
+    padding: 80px 0; /* Espaciado generoso arriba y abajo */
+    margin: 40px 0 0 0; /* Eliminamos los márgenes auto que la encuadraban */
+    clear: both;
+    display: flex;
+    justify-content: center;
+}
+
+/* El nuevo contenedor interno que mantiene el diseño centrado y alineado */
+.binibiaa-inner-wrapper {
+    width: 100%;
+    max-width: 1200px;
+    padding: 0 20px;
+}
+
+/* Encabezado limpio directamente sobre fondo blanco */
+.binibiaa-header {
+    text-align: center;
+    max-width: 650px;
+    margin: 0 auto 50px auto;
+}
+
+.binibiaa-header .brand-subtitle {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #a855f7;
+    letter-spacing: 4px;
+}
+
+.binibiaa-header .brand-title {
+    font-size: 3rem;
+    color: #2e1065;
+    font-weight: 800;
+    margin: 10px 0;
+}
+
+.binibiaa-header .brand-slogan {
+    display: block;
+    font-family: 'Georgia', serif;
+    font-style: italic;
+    font-size: 1.3rem;
+    color: #701a75;
+    margin-bottom: 15px;
+}
+
+.binibiaa-header .brand-description {
+    color: #64748b;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+/* Grid Moderno */
+.showcase-show-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 30px;
+    margin-bottom: 50px;
+}
+
+/* Tarjetas individuales: Un gris blanquecino hiper suave para que floten en el blanco limpio */
+.showcase-item {
+    background: #f8fafc; 
+    border-radius: 24px;
+    overflow: hidden;
+    border: 1px solid #f1f5f9;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease, background 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Al pasar el mouse, la tarjeta se ilumina a blanco puro y gana volumen */
+.showcase-item:hover {
+    transform: translateY(-8px);
+    background: #ffffff;
+    box-shadow: 0 20px 30px rgba(168, 85, 247, 0.08);
+    border-color: #f3e8ff;
+}
+
+/* El contenedor de la imagen fuerza un recorte suave moderno */
+.showcase-img-wrapper {
+    width: 100%;
+    height: 220px;
+    overflow: hidden;
+    background: #faf5ff;
+    position: relative;
+}
+
+.showcase-img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+    transition: transform 0.5s ease;
+}
+
+.showcase-item:hover .showcase-img-wrapper img {
+    transform: scale(1.05);
+}
+
+/* Bloque de textos internos */
+.showcase-info {
+    padding: 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex-grow: 1;
+    position: relative;
+}
+
+.showcase-info h3 {
+    font-size: 1.15rem;
+    color: #1e1b4b;
+    font-weight: 700;
+}
+
+.showcase-info p {
+    font-size: 0.85rem;
+    color: #64748b;
+    line-height: 1.5;
+}
+
+/* Tag elegante flotante en el texto */
+.showcase-badge {
+    align-self: flex-start;
+    background: #f5f3ff;
+    color: #7c3aed;
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 100px;
+    margin-top: auto;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Barra inferior de marketplaces asentada sobre el fondo blanco */
+.marketplace-bar {
+    background: #f8fafc;
+    border-radius: 24px;
+    padding: 24px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.01), 0 10px 15px -3px rgba(168, 85, 247, 0.02);
+    border: 1px solid #f1f5f9;
+    position: relative;
+    overflow: hidden;
+    flex-wrap: wrap;
+    gap: 20px;
+    width: 100%;
+}
+
+.marketplace-title {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    color: #334155;
+    font-size: 0.95rem;
+}
+
+.cart-icon-bg, .bag-icon-bg {
+    background: #ffffff;
+    padding: 12px;
+    border-radius: 50%;
+    font-size: 1.1rem;
+    color: #a855f7;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02);
+}
+
+.marketplace-title strong {
+    color: #1e293b;
+}
+
+.platforms-links {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    padding: 10px 30px;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+}
+
+.platform-btn {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    transition: transform 0.2s;
+}
+
+.platform-btn:hover {
+    transform: scale(1.05);
+}
+
+.platform-btn img {
+    height: 32px;
+    width: auto;
+    object-fit: contain;
+}
+
+.platform-btn.mlibre {
+    gap: 8px;
+}
+
+.platform-btn.mlibre span {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #1e293b;
+    font-family: Arial, sans-serif;
+}
+
+.separator-line {
+    width: 1px;
+    height: 30px;
+    background-color: #e2e8f0;
+}
+
+.bag-icon-container {
+    display: flex;
+    align-items: center;
+}
+
+/* --- Responsividad --- */
+@media (max-width: 992px) {
+    .marketplace-bar {
+        justify-content: center;
+        text-align: center;
+    }
+    .bag-icon-container {
+        display: none;
+    }
+}
+
+@media (max-width: 600px) {
+    .binibiaa-header .brand-title {
+        font-size: 2.5rem;
+    }
+    .platforms-links {
+        flex-direction: column;
+        gap: 15px;
+        width: 100%;
+        padding: 20px;
+    }
+    .separator-line {
+        width: 80%;
+        height: 1px;
+    }
+}
+
+
+/* ==========================================
+   VERSION PREMIUM FLAT: ACADEMIKA (SIN CUADROS MASTER)
+   ========================================== */
+
+/* Contenedor principal totalmente limpio y transparente */
+.academika-section-flat {
+    width: 100%;
+    max-width: 1200px;
+    margin: 90px auto;
+    padding: 0 20px;
+    background: transparent; /* Remueve cualquier fondo o caja externa */
+    clear: both;
+}
+
+/* Encabezado elegante integrado */
+.academika-header-flat {
+    text-align: center;
+    max-width: 760px;
+    margin: 0 auto 60px auto;
+}
+
+.academika-header-flat .header-badge-icon {
+    background: #2563eb;
+    color: #ffffff;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.25rem;
+    margin-bottom: 20px;
+    box-shadow: 0 10px 20px rgba(37, 99, 235, 0.2);
+}
+
+.academika-title-flat {
+    font-size: 3rem;
+    color: #1e3a8a;
+    font-weight: 800;
+    letter-spacing: 2px;
+    margin-bottom: 18px;
+}
+
+.academika-desc-flat {
+    color: #475569;
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+/* Grid de tarjetas sin marcos toscos */
+.academika-grid-flat {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 30px;
+    margin-bottom: 60px;
+}
+
+/* Tarjetas individuales que flotan suavemente sobre la web blanca */
+.module-card-flat {
+    background: #ffffff;
+    border-radius: 24px;
+    padding: 30px 24px;
+    display: flex;
+    align-items: center;
+    /* Sombra de alta definición ultra sutil */
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02), 0 10px 15px -3px rgba(148, 163, 184, 0.05);
+    border: 1px solid rgba(241, 245, 249, 0.8);
+    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.25s ease;
+}
+
+.module-card-flat:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 25px -5px rgba(148, 163, 184, 0.1), 0 10px 10px -5px rgba(148, 163, 184, 0.04);
+}
+
+/* Círculos contenedores de iconos */
+.module-icon-circle {
+    width: 65px;
+    height: 65px;
+    border-radius: 50%; /* Cambiado a círculos perfectos para máxima limpieza */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    margin-right: 20px;
+}
+
+.module-icon-circle i {
+    font-size: 1.6rem;
+}
+
+/* Fondos pasteles planos y modernos */
+.bg-blue-soft   { background: #f0f6ff; }
+.bg-purple-soft { background: #f5f3ff; }
+.bg-green-soft  { background: #f0fdf4; }
+.bg-orange-soft { background: #fff7ed; }
+.bg-pink-soft   { background: #fdf2f8; }
+.bg-cyan-soft   { background: #ecfeff; }
+
+/* Paleta de color limpia de los iconos vectoriales */
+.icon-blue   { color: #2563eb; }
+.icon-purple { color: #7c3aed; }
+.icon-green  { color: #16a34a; }
+.icon-orange { color: #ea580c; }
+.icon-pink   { color: #db2777; }
+.icon-cyan   { color: #0891b2; }
+
+/* Contenedor de textos */
+.module-text-flat {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.module-text-flat h3 {
+    font-size: 1.1rem;
+    color: #0f172a;
+    font-weight: 700;
+    line-height: 1.4;
+}
+
+.module-text-flat p {
+    font-size: 0.88rem;
+    color: #64748b;
+    line-height: 1.45;
+}
+
+/* Barra inferior integrada de forma nativa en la sección */
+.academika-features-flat-bar {
+    border-top: 1px solid #f1f5f9;
+    padding-top: 35px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.feature-inline-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex: 1;
+    min-width: 240px;
+}
+
+.feature-bullet-icon i {
+    font-size: 1rem;
+    color: #2563eb;
+    background: #f0f6ff;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.feature-inline-item span {
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: #475569;
+}
+
+.feature-divider {
+    width: 1px;
+    height: 30px;
+    background-color: #e2e8f0;
+}
+
+/* Ajustes Responsivos */
+@media (max-width: 1024px) {
+    .feature-divider {
+        display: none;
+    }
+    .academika-features-flat-bar {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 640px) {
+    .academika-title-flat {
+        font-size: 2.2rem;
+    }
+    .module-card-flat {
+        flex-direction: column;
+        text-align: center;
+        padding: 25px;
+    }
+    .module-icon-circle {
+        margin-right: 0;
+        margin-bottom: 16px;
+    }
+}
+
+
+/* ==========================================
+   VERSION PREMIUM SIGA: ICONOS DE COLORES
+   ========================================== */
+
+/* Fondo general blanco infinito de extremo a extremo */
+.siga-section-flat {
+    width: 100%;
+    background: #ffffff !important;
+    padding: 60px 0; /* Espaciado compacto vertical para evitar scroll innecesario */
+    margin: 0;
+    clear: both;
+    display: flex;
+    justify-content: center;
+}
+
+/* Envoltura para centrar el contenido a la estructura del ecosistema */
+.siga-inner-wrapper {
+    width: 100%;
+    max-width: 1200px;
+    padding: 0 20px;
+}
+
+/* Encabezado limpio y centrado */
+.siga-header-flat {
+    text-align: center;
+    max-width: 850px;
+    margin: 0 auto 40px auto;
+}
+
+.siga-title-flat {
+    font-size: 3rem;
+    color: #0d3b85; /* Azul corporativo fuerte */
+    font-weight: 800;
+    margin-bottom: 0;
+    letter-spacing: 0.5px;
+}
+
+.siga-subtitle-flat {
+    display: block;
+    font-size: 1.5rem;
+    color: #0d3b85;
+    font-weight: 700;
+    margin-top: 4px;
+    margin-bottom: 15px;
+}
+
+/* Línea decorativa sutil debajo del título */
+.siga-title-line {
+    width: 50px;
+    height: 3px;
+    background: #0d3b85;
+    border-radius: 10px;
+    margin: 0 auto 18px auto;
+}
+
+.siga-desc-flat {
+    color: #334155;
+    font-size: 0.98rem;
+    line-height: 1.6;
+}
+
+/* Layout de dos columnas principales */
+.siga-content-layout {
+    display: grid;
+    grid-template-columns: 1fr 1.3fr;
+    gap: 35px; /* Distancia perfecta entre la laptop y los bloques */
+    align-items: center;
+}
+
+/* Contenedor de la Imagen */
+.siga-image-column {
+    width: 100%;
+}
+
+.siga-img-wrapper {
+    width: 100%;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 12px 30px rgba(13, 59, 133, 0.06);
+    border: 1px solid #f1f5f9;
+}
+
+.siga-img-wrapper img {
+    width: 100%;
+    display: block;
+    object-fit: cover;
+}
+
+/* Grid de Características (3 filas x 2 columnas ordenadas) */
+.siga-features-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px; /* Espaciado corto y uniforme */
+}
+
+/* Tarjetas internas de contenido: Limpias, sutiles y elegantes */
+.siga-feature-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    padding: 18px 22px;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.25s ease;
+}
+
+.siga-feature-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 22px rgba(13, 59, 133, 0.07);
+    border-color: #cbd5e1;
+}
+
+/* Estilo Base de los Círculos de Iconos (Grandes y llamativos) */
+.siga-icon-circle {
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    color: #ffffff;
+    font-size: 1.4rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* CLASES DE COLORES VIVOS Y DEGRADADOS (Según tu nueva maqueta) */
+.ico-blue {
+    background: linear-gradient(135deg, #2563eb, #3b82f6);
+}
+
+.ico-purple {
+    background: linear-gradient(135deg, #7c3aed, #a78bfa);
+}
+
+.ico-navy {
+    background: linear-gradient(135deg, #0f172a, #1e3a8a);
+}
+
+.ico-green {
+    background: linear-gradient(135deg, #16a34a, #4ade80);
+}
+
+.ico-orange {
+    background: linear-gradient(135deg, #ea580c, #f97316);
+}
+
+.ico-teal {
+    background: linear-gradient(135deg, #0d9488, #2dd4bf);
+}
+
+/* Estilo de los Textos de las Tarjetas */
+.siga-card-text h3 {
+    font-size: 1.05rem;
+    color: #0f172a;
+    font-weight: 700;
+    line-height: 1.4;
+    margin: 0;
+}
+
+/* --- Adaptabilidad de Pantallas (Responsivo) --- */
+@media (max-width: 992px) {
+    .siga-content-layout {
+        grid-template-columns: 1fr; /* Colapsa a una sola columna en pantallas medianas */
+        gap: 40px;
+    }
+    .siga-image-column {
+        max-width: 500px;
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 680px) {
+    .siga-features-grid {
+        grid-template-columns: 1fr; /* Tarjetas apiladas de 1 en 1 en móviles */
+        gap: 12px;
+    }
+    .siga-title-flat {
+        font-size: 2.3rem;
+    }
+    .siga-subtitle-flat {
+        font-size: 1.2rem;
+    }
+    .siga-feature-card {
+        padding: 16px;
+    }
+}
+
+
+/* ===================================================
+   SECCIÓN FENIX ADMIN: ÓRBITA MEDINA (SIN CARDS)
+   =================================================== */
+
+.fenix-orbit-section {
+    width: 100%;
+    padding: 90px 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+    background: transparent; /* Hereda tu fondo base sin alterarlo */
+}
+
+.fenix-orbit-container {
+    width: 100%;
+    max-width: 1440px;
+    padding: 0 40px;
+    display: grid;
+    grid-template-columns: 350px 1fr;
+    gap: 40px;
+    align-items: center;
+}
+
+/* --- TEXTOS DE LA COLUMNA IZQUIERDA --- */
+.fenix-left-info {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    z-index: 10;
+}
+
+.fenix-badge {
+    align-self: flex-start;
+    background: rgba(15, 23, 42, 0.08);
+    color: #0f172a; /* Negro azulado */
+    font-size: 0.75rem;
+    font-weight: 800;
+    padding: 6px 14px;
+    border-radius: 20px;
+    letter-spacing: 0.8px;
+}
+
+.fenix-title {
+    font-size: 3.4rem;
+    color: #304880; /* Título principal en negro profundo */
+    font-weight: 900;
+    line-height: 1.1;
+    margin: 0;
+}
+
+.fenix-divider {
+    width: 50px;
+    height: 4px;
+    background: #0f172a;
+    border-radius: 4px;
+}
+
+.fenix-description {
+    color: #3a4049; /* Gris oscuro de alta densidad */
+    font-size: 1.05rem;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.fenix-note-bubble {
+    margin-top: 20px;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 16px;
+    padding: 20px;
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    border: 1px solid rgba(79, 120, 216, 0.1);
+}
+
+.fenix-note-bubble .bubble-icon {
+    width: 42px;
+    height: 42px;
+    background: #114ace;
+    color: #ffffff;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    font-size: 1.05rem;
+}
+/* --- ESCENARIO DE LA ÓRBITA --- */
+.fenix-orbit-stage {
+    position: relative;
+    width: 100%;
+    height: 600px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.orbit-svg-canvas {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* LAPTOP CENTRAL (/pcfenix.png) */
+.orbit-laptop-center {
+    position: absolute;
+    z-index: 3;
+    width: 470px;
+    bottom: 45px;
+    filter: drop-shadow(0 25px 50px rgba(0, 0, 0, 0.15));
+}
+
+.laptop-wrapper img {
+    width: 100%;
+    display: block;
+}
+
+/* NODOS LIBRES FLOTANTES (SIN TARJETAS) */
+.orbit-node {
+    position: absolute;
+    z-index: 4;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 170px;
+    background: transparent !important;
+    box-shadow: none !important;
+    border: none !important;
+    padding: 0 !important;
+}
+
+/* Esferas de los íconos */
+.icon-sphere {
+    width: 56px;
+    height: 56px;
+    background: #ffffff;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.3rem;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+/* Títulos de los módulos: Negro nítido */
+.orbit-node h3 {
+    font-size: 1.05rem;
+    color: #204292; 
+    font-weight: 800; /* Muy grueso para excelente contraste */
+    margin: 4px 0 3px 0;
+}
+
+/* Descripciones de los módulos: Gris pizarra intenso (Legibilidad Perfecta) */
+.orbit-node p {
+    font-size: 0.8rem;
+    color: #334155; /* Gris carbón fuerte */
+    font-weight: 700; /* Peso extra para que la tipografía se defina bien */
+    line-height: 1.35;
+    margin: 0;
+    max-width: 180px;
+}
+
+/* Color de los glifos de los íconos */
+.icon-blue i      { color: #2563eb; }
+.icon-purple i    { color: #7c3aed; }
+.icon-green i     { color: #10b981; }
+.icon-orange i    { color: #f97316; }
+.icon-cyan i      { color: #06b6d4; }
+.icon-red i       { color: #ef4444; }
+
+/* --- COORDENADAS ORBITALES EN ESCRITORIO --- */
+.node-compras      { left: 2%;   top: 52%; }
+.node-proveedores  { left: 15%;  top: 16%; }
+.node-ventas       { left: 43%;  top: 2%;  }
+.node-inventario   { right: 15%; top: 16%; }
+.node-cotizaciones { right: 2%;  top: 52%; }
+.node-facturacion  { right: 14%; top: 80%; }
+
+/* --- RESPONSIVO INTELIGENTE --- */
+@media (max-width: 1250px) {
+    .fenix-orbit-container {
+        grid-template-columns: 1fr;
+        max-width: 850px;
+    }
+    .fenix-left-info {
+        text-align: center;
+        align-items: center;
+        margin-bottom: 30px;
+    }
+}
+
+@media (max-width: 900px) {
+    .fenix-orbit-stage {
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
+    }
+    .orbit-svg-canvas {
+        display: none;
+    }
+    .orbit-laptop-center {
+        position: relative;
+        bottom: 0;
+        width: 100%;
+        max-width: 450px;
+        order: -1;
+    }
+    .orbit-node {
+        position: relative !important;
+        left: 0 !important;
+        right: 0 !important;
+        top: 0 !important;
+        width: 100%;
+        max-width: 300px;
+        margin: 15px auto;
+    }
+    .orbit-node p {
+        max-width: 100%;
+    }
+}
+
+:root {
+    --pbr-bg-clean: #ffffff;
+    --pbr-navy-dark: #0f2557;
+    --pbr-blue-accent: #1d52d4;
+    --pbr-green-success: #2cb52c;
+    --pbr-gray-text: #222d42;
+    --pbr-muted-text: #5e6d85;
+}
+
+/* Contenedor Base */
+.pbr-full-section {
+    width: 100%;
+    background-color: var(--pbr-bg-clean);
+    padding: 60px 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.pbr-full-section *, 
+.pbr-full-section *::before, 
+.pbr-full-section *::after {
+    box-sizing: border-box;
+}
+
+.pbr-fluid-wrapper {
+    width: 100%;
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 0 30px;
+}
+
+/* Encabezado */
+.pbr-header-block {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.pbr-badge-text {
+    font-size: 2.9rem;       /* ← Súbelo aquí (estaba en 1.1rem). ¡Esto lo hará el doble de grande! */
+    font-weight: 800;         /* Le da más grosor a las letras */
+    color: var(--pbr-blue-accent);
+    letter-spacing: 2px;      /* Separa un poco más las letras para que respire */
+    display: inline-block;
+    position: relative;
+    margin-bottom: 25px;      /* Le da más espacio hacia abajo para que no se pegue al texto */
+}
+
+/* Ajustamos la línea azul de abajo para que crezca junto con el título */
+.pbr-badge-text::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;            /* La baja un poco más */
+    left: 15px;               /* La centra mejor con el nuevo tamaño */
+    width: calc(100% - 30px); /* Hace que la línea cubra casi todo el ancho de las letras */
+    height: 4px;              /* Un poquito más gruesa para que combine */
+    background-color: var(--pbr-blue-accent);
+    border-radius: 2px;
+}
+
+.pbr-main-heading {
+    font-size: 1.5rem;
+    color: var(--pbr-navy-dark);
+    font-weight: 800;
+    max-width: 900px;
+    margin: 10px auto 15px auto;
+    line-height: 1.3;
+}
+
+.pbr-subheading {
+    font-size: 1.05rem;
+    color: var(--pbr-muted-text);
+    max-width: 750px;
+    margin: 0 auto;
+}
+
+/* --- Layout Estructurado para Evitar Desbordes --- */
+.pbr-main-layout {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+    margin-bottom: 40px;
+}
+
+.pbr-grid-container {
+    display: table-cell;
+    width: 65%;
+    vertical-align: top;
+    padding-right: 40px;
+}
+
+.pbr-image-sidebar {
+    display: table-cell;
+    width: 35%;
+    vertical-align: top;
+    position: relative;
+}
+
+/* Control estricto de Filas Horizontales */
+.pbr-row {
+    display: block;
+    width: 100%;
+    margin-bottom: 20px;
+    clear: both;
+}
+
+/* Tarjetas alineadas perfectamente de dos en dos */
+.pbr-benefit-card {
+    width: 48%;
+    float: left;
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 24px;
+    min-height: 120px; /* Evita desniveles visuales si un texto es más largo */
+    box-shadow: 0 4px 15px rgba(29, 82, 212, 0.04);
+    border: 1px solid rgba(29, 82, 212, 0.06);
+}
+
+.pbr-row .pbr-benefit-card:first-child {
+    margin-right: 4%;
+}
+
+.pbr-check-icon {
+    float: left;
+    width: 32px;
+    height: 32px;
+    background-color: var(--pbr-green-success);
+    color: white;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 32px;
+    font-weight: bold;
+    font-size: 0.95rem;
+    margin-right: 15px;
+}
+
+.pbr-card-content {
+    overflow: hidden;
+}
+
+.pbr-card-content p {
+    margin: 0 0 12px 0;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--pbr-gray-text);
+}
+
+.pbr-indicator-bar {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: var(--pbr-green-success);
+    border-radius: 2px;
+}
+
+/* --- Renderizado de la Imagen Lateral --- */
+.pbr-img-frame {
+    width: 100%;
+    height: 490px; /* Ajustado perfectamente para cubrir la altura de las 3 filas */
+    border-radius: 16px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 15px 35px rgba(15, 37, 87, 0.1);
+}
+
+.pbr-img-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.pbr-floating-widget {
+    position: absolute;
+    bottom: 25px;
+    left: -20px;
+    width: 60px;
+    height: 60px;
+    background-color: var(--pbr-blue-accent);
+    color: white;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 25px rgba(29, 82, 212, 0.4);
+}
+
+/* Decoraciones de puntos */
+.pbr-pattern-dots {
+    width: 60px;
+    height: 60px;
+    position: absolute;
+    background-image: radial-gradient(var(--pbr-blue-accent) 1.5px, transparent 1.5px);
+    background-size: 8px 8px;
+    opacity: 0.25;
+}
+
+.pbr-pattern-dots.pt-top { top: -15px; right: -15px; z-index: 1; }
+.pbr-pattern-dots.pt-bottom { bottom: 15px; right: 20px; }
+
+/* --- Footer: Nuestro Objetivo --- */
+.pbr-footer-bar {
+    background-color: #ffffff;
+    border-radius: 14px;
+    padding: 25px 35px;
+    margin-top: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+    position: relative;
+    border: 1px solid rgba(0, 0, 0, 0.03);
+    clear: both;
+}
+
+.pbr-obj-heading {
+    float: left;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.pbr-target-circle {
+    width: 44px;
+    height: 44px;
+    background-color: var(--pbr-blue-accent);
+    color: white;
+    font-size: 1.3rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pbr-obj-heading h3 {
+    margin: 0;
+    font-size: 1.15rem;
+    color: var(--pbr-navy-dark);
+    font-weight: 700;
+}
+
+.pbr-vertical-line {
+    float: left;
+    width: 1px;
+    height: 40px;
+    background-color: #e2e8f0;
+    margin: 0 35px;
+}
+
+.pbr-obj-description { overflow: hidden; }
+
+.pbr-obj-description p {
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--pbr-muted-text);
+}
+
+/* --- Responsive para Móviles --- */
+@media (max-width: 992px) {
+    .pbr-main-layout, .pbr-grid-container, .pbr-image-sidebar {
+        display: block;
+        width: 100%;
+    }
+    .pbr-grid-container {
+        padding-right: 0;
+    }
+    .pbr-benefit-card {
+        width: 100% !important;
+        margin-right: 0 !important;
+        min-height: auto;
+    }
+    .pbr-image-sidebar {
+        margin-top: 30px;
+    }
+    .pbr-img-frame {
+        height: 300px;
+    }
+    .pbr-footer-bar { padding: 20px; }
+    .pbr-obj-heading, .pbr-vertical-line { float: none; }
+    .pbr-vertical-line { display: none; }
+    .pbr-obj-heading { margin-bottom: 15px; }
+}
+
+
+:root {
+    /* Tu fondo azul base que ya está implementado */
+    --sspip-dark-navy: #0f2d5a;
+    --sspip-muted-blue: #5c6b88;
+    --sspip-electric-blue: #2557fa;
+}
+
+/* Sección General */
+.sspip-fluid-section {
+    width: 100%;
+    background-color: var(--sspip-main-blue-bg); /* Mismo fondo base azul */
+    padding: 80px 0;
+    position: relative;
+    overflow: hidden;
+    font-family: inherit;
+}
+
+.sspip-fluid-section *,
+.sspip-fluid-section *::before,
+.sspip-fluid-section *::after {
+    box-sizing: border-box;
+}
+
+.sspip-wrapper {
+    width: 100%;
+    max-width: 1340px;
+    margin: 0 auto;
+    padding: 0 25px;
+}
+
+/* --- Encabezado --- */
+.sspip-header-block {
+    text-align: center;
+    margin-bottom: 70px;
+}
+
+.sspip-badge-text {
+    font-size: 3.5rem !important;
+    font-weight: 800 !important;
+    color: var(--sspip-electric-blue) !important;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    display: block !important;
+    margin: 0 auto 20px auto !important;
+    text-align: center;
+    position: relative;
+    width: max-content;
+}
+
+.sspip-badge-text::after {
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 4px;
+    background-color: var(--sspip-electric-blue);
+    border-radius: 4px;
+}
+
+.sspip-main-heading {
+    font-size: 2.2rem;
+    color: var(--sspip-dark-navy);
+    font-weight: 500;
+    margin: 15px auto;
+}
+
+.sspip-main-heading strong {
+    font-weight: 800;
+}
+
+.sspip-subheading {
+    font-size: 1.05rem;
+    color: var(--sspip-muted-blue);
+    max-width: 840px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+.sspip-subheading strong {
+    color: var(--sspip-electric-blue);
+    font-weight: 700;
+}
+
+/* --- Estructura de Módulos Alineados Horizontalmente --- */
+.sspip-timeline-layout {
+    position: relative;
+    width: 100%;
+    margin-bottom: 60px;
+    padding: 10px 0;
+}
+
+/* Línea sutil de conexión detrás de los elementos */
+.sspip-connecting-line {
+    position: absolute;
+    top: 70px; /* Centrado perfecto con la altura del icono */
+    left: 10%;
+    width: 80%;
+    height: 1px;
+    background-image: linear-gradient(to right, var(--sspip-electric-blue) 40%, rgba(250,250,250,0) 0%);
+    background-size: 10px 1px;
+    background-repeat: repeat-x;
+    opacity: 0.25;
+    z-index: 1;
+}
+
+.sspip-row-items {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+    position: relative;
+    z-index: 2;
+}
+
+/* Nodos individuales (Sin cuadros ni fondos blancos planos) */
+.sspip-node-item {
+    display: table-cell;
+    width: 20%;
+    padding: 0 15px;
+    text-align: center;
+    vertical-align: top;
+}
+
+.sspip-node-number {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #94a3b8;
+    margin-bottom: 12px;
+}
+
+/* Iconos puros de color oscuro que combinan directamente con el azul base */
+.sspip-node-icon {
+    font-size: 2.2rem;
+    color: var(--sspip-dark-navy);
+    margin-bottom: 18px;
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+
+.sspip-node-item:hover .sspip-node-icon {
+    transform: translateY(-4px);
+    color: var(--sspip-electric-blue);
+}
+
+.sspip-node-text p {
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--sspip-dark-navy);
+}
+
+.sspip-node-text p strong {
+    font-weight: 700;
+}
+
+/* --- Footer Conacyt Limpio --- */
+.sspip-footer-clean {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+}
+
+.sspip-footer-content {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 20px;
+}
+
+.sspip-bulb-icon {
+    font-size: 1.1rem;
+    color: var(--sspip-electric-blue);
+}
+
+.sspip-footer-content p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--sspip-muted-blue);
+    font-weight: 500;
+}
+
+/* --- Soporte de Pantallas Pequeñas (Responsive) --- */
+@media (max-width: 992px) {
+    .sspip-connecting-line {
+        display: none;
+    }
+    .sspip-row-items,
+    .sspip-node-item {
+        display: block;
+        width: 100%;
+    }
+    .sspip-node-item {
+        margin-bottom: 45px;
+        padding: 0;
+    }
+    .sspip-node-icon {
+        margin-bottom: 10px;
+    }
+}
+
+
+/* Fuerza al footer a ignorar cualquier herencia y ser 100% blanco de extremo a extremo */
+.main-footer {
+    display: block !important;
+    width: 100% !important;
+    background-color: #ffffff !important; /* Blanco directo */
+    margin: 0 !important;
+    padding: 25px 0 !important;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    box-sizing: border-box !important;
+    clear: both !important;
+}
+
+/* Maneja el contenido por dentro para que no se pegue a las esquinas de la pantalla */
+.footer-container {
+    width: 100% !important;
+    max-width: 1340px; /* Alineado al ancho de tu navbar */
+    margin: 0 auto !important;
+    padding: 0 40px !important;
+    box-sizing: border-box !important;
+    
+    /* Flexbox interno para la línea recta */
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+}
+
+/* Estilos de texto limpios */
+.footer-logo {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #0f2d5a;
+    margin: 0;
+}
+
+.footer-logo .dot {
+    color: var(--blue, #2557fa);
+}
+
+.footer-copyright {
+    margin: 0 !important;
+    font-size: 0.88rem;
+    color: #5c6b88;
+    white-space: nowrap;
+}
+
+.footer-links {
+    display: flex;
+    gap: 24px;
+    margin: 0;
+}
+
+.footer-links a {
+    font-size: 0.88rem;
+    color: #5c6b88;
+    text-decoration: none;
+    font-weight: 500;
+}
